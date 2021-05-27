@@ -1,8 +1,10 @@
 # py-lambda-action
 
+**기존 레포에서 Python 버전을 3.6 -> 3.8로 변경한 fork입니다**
+
 [![GitHubActions](https://img.shields.io/badge/listed%20on-GitHubActions-blue.svg)](https://github-actions.netlify.com/py-lambda)
 
-A Github Action to deploy AWS Lambda functions written in Python with their dependencies in a separate layer. For now, only works with Python 3.6. PRs welcome.
+A Github Action to deploy AWS Lambda functions written in Python with their dependencies in a separate layer. For now, only works with Python ~~3.6~~ 3.8. PRs welcome.
 
 ## Use
 Deploys everything in the repo as code to the Lambda function, and installs/zips/deploys the dependencies as a separate layer the function can then immediately use.
