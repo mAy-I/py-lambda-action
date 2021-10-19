@@ -3,6 +3,12 @@ set -e
 
 install_zip_dependencies(){
 	echo "Installing and zipping dependencies..."
+	if [ "$GITHUB_TOKEN" != "" ] ; then \
+    /bin/bash -c "git config --global url.\"https://$(echo $GITHUB_TOKEN)@github.com/\".insteadOf \"https://github.com/\"" ; \
+  else \
+    echo "    (GITHUB_TOKEN is not privided)"; \
+  fi
+
 	mkdir python
 	pip install --target=python -r "${INPUT_REQUIREMENTS_TXT}"
 	zip -r dependencies.zip ./python
