@@ -30,7 +30,11 @@ publish_function_code(){
 
 update_function_layers(){
 	echo "Using the layer in the function..."
-	aws lambda update-function-configuration --function-name "${INPUT_LAMBDA_FUNCTION_NAME}" --layers "${INPUT_LAMBDA_LAYER_ARN}:${LAYER_VERSION}"
+	if [ "$INPUT_LAMBDA_EXTRA_LAYER_ARNS" = "" ] ; then \
+		aws lambda update-function-configuration --function-name "${INPUT_LAMBDA_FUNCTION_NAME}" --layers ${INPUT_LAMBDA_LAYER_ARN}:${LAYER_VERSION} ; \
+	else \
+		aws lambda update-function-configuration --function-name "${INPUT_LAMBDA_FUNCTION_NAME}" --layers ${INPUT_LAMBDA_LAYER_ARN}:${LAYER_VERSION} ${INPUT_LAMBDA_EXTRA_LAYER_ARNS} ; \
+	fi
 }
 
 deploy_lambda_function(){
